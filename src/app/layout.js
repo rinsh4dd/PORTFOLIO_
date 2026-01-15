@@ -4,6 +4,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 
+
 // 1. The SEO Configuration
 export const metadata = {
   metadataBase: new URL('https://rinshad.com'), //UY: Replace with your actual domain later
