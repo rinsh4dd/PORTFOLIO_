@@ -1,7 +1,8 @@
-import Preloader from "@Components/PreLoader";
+import Preloader from "@/components/PreLoader";
 import "./globals.css";
-import SmoothScroll from "@/Components/SmoothComponents";
-import { ThemeProvider } from "@/Components/ThemeProvider";
+import SmoothScroll from "@/components/SmoothScroll";
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 
 // 1. The SEO Configuration
 export const metadata = {

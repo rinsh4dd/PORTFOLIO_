@@ -1,11 +1,11 @@
-import Navbar from "@/Components/Navbar";
-import Hero from "@/Components/Hero";
-import Marquee from "@/Components/Marquee";
-import Experience from "@/Components/Experience";
-import Projects from "@/Components/Projects";
-import Footer from "@/Components/Footer";
-import About from "@/Components/About";
-import ReflexGame from "@/Components/Game";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Marquee from "@/components/Marquee";
+import Experience from "@/components/Experience";
+import Projects from "@/components/Projects";
+import Footer from "@/components/Footer";
+import About from "@/components/About";
+import ReflexGame from "@/components/Game";
 
 export default function Home() {
   return (
@@ -13,11 +13,11 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Marquee />
-      <About/>
+      <About />
       <Experience />
       <Projects />
       <ReflexGame />
-      <Footer/>
+      <Footer />
     </main>
-  );    
+  );
 }
