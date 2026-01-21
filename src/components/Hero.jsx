@@ -45,8 +45,8 @@ export default function Hero() {
 
       <div className="flex flex-wrap gap-3 mt-12">
         {/* Updated skills based on Resume [cite: 14, 15, 16, 17] */}
-        {['ASP.NET Core', 'React.js', 'SQL Server', 'Clean Arch', 'Azure'].map((tech) => (
-          <span key={tech} className="hero-pill px-6 py-3 border border-[var(--border-color)] rounded-full text-sm font-bold uppercase hover:bg-[var(--accent)] hover:border-[var(--accent)] transition-colors cursor-default">
+        {['ASP.NET Core', 'React.js', 'SQL Server'].map((tech) => (
+          <span key={tech} className="hero-pill px-6 py-3 border border-[var(--border-color)] rounded-full text-sm font-bold uppercase hover:bg-[var(--accent)] hover:text-black hover:border-[var(--accent)] transition-colors cursor-default">
             {tech}
           </span>
         ))}
