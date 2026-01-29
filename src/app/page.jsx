@@ -16,7 +16,7 @@ export default function Home() {
       <About />
       <Experience />
       <Projects />
-      <ReflexGame />
+      {/* <ReflexGame /> */}
       <Footer />
     </main>
   );

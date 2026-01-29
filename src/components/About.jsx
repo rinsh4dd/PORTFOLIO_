@@ -56,7 +56,7 @@ export default function About() {
         });
       });
     },
-    { scope: container }
+    { scope: container },
   );
 
   const specs = [
@@ -104,25 +104,24 @@ export default function About() {
             </h3>
             <div className="about-bio grid grid-cols-1 md:grid-cols-2 gap-8 text-lg md:text-xl font-light opacity-70 leading-relaxed">
               <p>
-                [cite_start]Specializing in the Microsoft ecosystem, I build
-                robust RESTful APIs using{" "}
+                Specializing in the Microsoft ecosystem, I build robust RESTful
+                APIs using{" "}
                 <strong className="text-[var(--foreground)] font-normal">
                   ASP.NET Core
                 </strong>{" "}
                 and high-performance databases with{" "}
                 <strong className="text-[var(--foreground)] font-normal">
-                  SQL Server
+                  SQL Server.
                 </strong>
-                [cite: 14].
               </p>
               <p>
-                [cite_start]On the client side, I craft responsive, type-safe
-                interfaces using{" "}
+                On the client side, I craft responsive, type-safe interfaces
+                using{" "}
                 <strong className="text-[var(--foreground)] font-normal">
                   React.js
                 </strong>{" "}
                 and modern CSS frameworks, ensuring a seamless user experience
-                from database to pixel[cite: 15].
+                from database to pixel.
               </p>
             </div>
           </div>
