@@ -80,6 +80,7 @@ export default function About() {
   return (
     <section
       ref={container}
+      id="about"
       className="py-32 px-6 md:px-12 max-w-[1800px] mx-auto"
     >
       <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-12">
@@ -127,7 +128,7 @@ export default function About() {
           </div>
 
           {/* 2. TECH SPECS LIST */}
-          <div className="w-full" ref={specsRef}>
+          <div className="w-full" ref={specsRef} id="techstack">
             <h4 className="about-bio font-mono text-xs uppercase tracking-widest opacity-40 mb-8">
               // Technical Specifications
             </h4>
