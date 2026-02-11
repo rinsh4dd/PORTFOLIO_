@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { FiArrowUpRight } from "react-icons/fi";
+import Magnetic from "./Magnetic";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -126,17 +127,16 @@ export default function Projects() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="w-[90vw] lg:w-[55vw] h-[60vh] lg:h-[70vh] relative group shrink-0"
+            className="w-[90vw] lg:w-[55vw] h-[55vh] lg:h-[70vh] relative group shrink-0"
           >
             {/* CARD CONTAINER */}
             <div
               className={`
                     absolute inset-0 border flex flex-col justify-between overflow-hidden shadow-2xl p-8 md:p-12 transition-colors duration-500
-                    ${
-                      project.theme === "dark"
-                        ? "bg-[var(--foreground)] text-[var(--background)] border-[var(--foreground)]"
-                        : "bg-[var(--card-bg)] border-[var(--border-color)] hover:border-[var(--accent)]"
-                    }
+                    ${project.theme === "dark"
+                  ? "bg-[var(--foreground)] text-[var(--background)] border-[var(--foreground)]"
+                  : "bg-[var(--card-bg)] border-[var(--border-color)] hover:border-[var(--accent)]"
+                }
                 `}
             >
               {/* Background Index Number */}
@@ -167,18 +167,19 @@ export default function Projects() {
                     ))}
                   </h3>
                 </div>
-                <div
-                  className={`
-                            p-4 rounded-full border transition-all cursor-pointer
-                            ${
-                              project.theme === "dark"
-                                ? "border-[var(--background)] hover:bg-[var(--accent)] hover:border-[var(--accent)] hover:text-black"
-                                : "border-[var(--foreground)] group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] group-hover:text-black"
-                            }
-                        `}
-                >
-                  <FiArrowUpRight className="text-3xl" />
-                </div>
+                <Magnetic>
+                  <div
+                    className={`
+                              p-4 rounded-full border transition-all cursor-pointer
+                              ${project.theme === "dark"
+                        ? "border-[var(--background)] hover:bg-[var(--accent)] hover:border-[var(--accent)] hover:text-black"
+                        : "border-[var(--foreground)] group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] group-hover:text-black"
+                      }
+                          `}
+                  >
+                    <FiArrowUpRight className="text-3xl" />
+                  </div>
+                </Magnetic>
               </div>
 
               {/* Details */}
@@ -192,11 +193,10 @@ export default function Projects() {
                       key={tag}
                       className={`
                                     px-4 py-2 text-xs font-bold uppercase border transition-colors cursor-default
-                                    ${
-                                      project.theme === "dark"
-                                        ? "border-[var(--background)]/30 hover:bg-[var(--background)] hover:text-[var(--foreground)]"
-                                        : "border-[var(--foreground)]/20 hover:bg-[var(--foreground)] hover:text-[var(--background)]"
-                                    }
+                                    ${project.theme === "dark"
+                          ? "border-[var(--background)]/30 hover:bg-[var(--background)] hover:text-[var(--foreground)]"
+                          : "border-[var(--foreground)]/20 hover:bg-[var(--foreground)] hover:text-[var(--background)]"
+                        }
                                 `}
                     >
                       {tag}

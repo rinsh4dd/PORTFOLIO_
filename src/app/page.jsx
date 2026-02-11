@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
+import Coffee from "@/components/Coffee";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
 import ReflexGame from "@/components/Game";
@@ -16,7 +17,7 @@ export default function Home() {
       <About />
       <Experience />
       <Projects />
-      {/* <ReflexGame /> */}
+      <Coffee />
       <Footer />
     </main>
   );

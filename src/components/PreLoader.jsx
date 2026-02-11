@@ -7,19 +7,31 @@ export default function Preloader() {
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
+    // Disable scroll when preloader is active - using a timeout ensure it hits after content paints
+    const lockScroll = () => {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    };
+
+    lockScroll();
+
     // 1. Start fading out after 2.2 seconds
     const timer = setTimeout(() => {
       setFade(true);
     }, 2200);
 
-    // 2. Remove from DOM after animation is done (2.7s total)
+    // 2. Remove from DOM after animation is done (2.7s total) and unlock scroll
     const cleanup = setTimeout(() => {
       setShow(false);
+      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
     }, 2700);
 
     return () => {
       clearTimeout(timer);
       clearTimeout(cleanup);
+      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
     };
   }, []);
 
@@ -27,16 +39,15 @@ export default function Preloader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black transition-opacity duration-700 ease-in-out ${
-        fade ? "opacity-0 pointer-events-none" : "opacity-100"
-      }`}
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black transition-opacity duration-700 ease-in-out ${fade ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
     >
       <div className="relative flex flex-col items-center">
         {/* Name with subtle glow */}
         <h1 className="text-4xl md:text-6xl font-black tracking-[0.2em] text-white uppercase animate-fade-in-up">
           RINSHAD
         </h1>
-        
+
         {/* Job Title / Subtitle */}
         <p className="mt-2 text-xs md:text-sm text-gray-400 tracking-[0.5em] uppercase">
           Full Stack Developer

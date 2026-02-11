@@ -3,51 +3,95 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Magnetic from "./Magnetic";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Experience() {
-  const container = useRef(null);
+  const container = useRef();
 
   useGSAP(
     () => {
-      // 1. Line Drawing Animation (Fixed)
-      // We set the initial state immediately to ensure it's hidden before animation starts
-      gsap.set(".timeline-line", { scaleY: 0, transformOrigin: "top" });
+      // 1. Line Drawing Animation
+      gsap.fromTo(".timeline-line",
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          transformOrigin: "top",
+          ease: "none",
+          scrollTrigger: {
+            trigger: container.current,
+            start: "top 20%",
+            end: "bottom 80%",
+            scrub: 1.5,
+          }
+        }
+      );
 
-      gsap.to(".timeline-line", {
-        scaleY: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 60%", // Starts when section top hits 60% of viewport
-          end: "bottom 80%", // Ends when section bottom hits 80% of viewport
-          scrub: 1, // Reduced scrub slightly for tighter response
-          invalidateOnRefresh: true, // Helps recalculate on resize/refresh
-        },
-      });
-
-      // 2. Content Fade In
-      gsap.from(".exp-content", {
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 70%", // Triggers slightly earlier
-        },
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: "power3.out",
+      // 2. Row Animation (Fade In Up)
+      const rows = gsap.utils.toArray(".experience-row");
+      rows.forEach((row) => {
+        gsap.from(row, {
+          scrollTrigger: {
+            trigger: row,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+        });
       });
     },
-    { scope: container },
+    { scope: container }
   );
+
+  const experiences = [
+    {
+      year: "2026",
+      status: "Present",
+      type: "Full Time",
+      company: "Sharaco Technologies",
+      role: "Software Engineer - .NET Backend",
+      description: "Currently specializing in ASP.NET Web API and Core ecosystems. Focused on building scalable backend architectures and optimizing server-side performance for enterprise-level applications.",
+      deliverables: []
+    },
+    {
+      year: "2025",
+      status: "Internship",
+      type: "Trainee",
+      company: "Bridgeon",
+      role: ".NET & React Developer Trainee",
+      description: "Operating within an Agile development team, I architect scalable backend solutions using the .NET ecosystem. Managed CI/CD pipelines and reacted full-stack features.",
+      deliverables: [
+        {
+          id: "01",
+          title: "Smart Serve ERP",
+          desc: "Vehicle Service Management System. Digitized job cards, reducing manual processing by 40%.",
+          stack: ["ASP.NET Core", "Dapper", "React"]
+        },
+        {
+          id: "02",
+          title: "Smart Desk System",
+          desc: "SaaS-ready office system with multi-tenant architecture and strict RBAC.",
+          stack: ["EF Core", "SQL Server", "Redux"]
+        },
+        {
+          id: "03",
+          title: "ShoeCart E-Commerce",
+          desc: "High-performance shopping platform with real-time cart updates and JWT auth.",
+          stack: ["Web API", "Authentication", "React"]
+        }
+      ]
+    }
+  ];
 
   return (
     <section
       ref={container}
       id="experience"
-      className="py-24 md:py-32 px-6 md:px-12 max-w-[1800px] mx-auto border-b border-[var(--border-color)] overflow-hidden"
+      className="py-24 md:py-32 px-6 md:px-12 max-w-[1800px] mx-auto border-b border-[var(--border-color)]"
     >
       {/* --- SECTION HEADER --- */}
       <div className="flex flex-col md:flex-row justify-between items-end mb-20">
@@ -59,143 +103,78 @@ export default function Experience() {
         </div>
       </div>
 
-      {/* --- TIMELINE LAYOUT --- */}
-      <div className="relative grid grid-cols-1 md:grid-cols-12 gap-12">
-        {/* --- TIMELINE LINE (FIXED) --- */}
-        {/* Added z-0 to ensure it doesn't get hidden by container backgrounds */}
+      <div className="relative">
+        {/* Timeline Line (Visual Connector) */}
         <div className="hidden md:block absolute left-[25%] top-0 bottom-0 w-[1px] bg-[var(--border-color)] z-0">
-          {/* Removed Tailwind origin-top to let GSAP handle it exclusively */}
-          <div className="timeline-line w-full h-full bg-[var(--accent)]"></div>
+          <div className="timeline-line absolute top-0 left-0 w-full h-full bg-[var(--accent)] origin-top"></div>
         </div>
 
-        {/* --- 01: CURRENT ROLE (Sharaco Technologies) --- */}
-        {/* Added relative z-10 to content to ensure it sits ON TOP of the line */}
-        <div className="md:col-span-3 md:text-right py-2 relative z-10">
-          <h3 className="exp-content text-2xl font-black uppercase text-[var(--foreground)]">
-            2026
-          </h3>
-          <span className="exp-content font-mono text-sm opacity-60 uppercase tracking-widest block mt-1">
-            Jan — Present
-          </span>
-          <div className="exp-content mt-4 inline-block px-3 py-1 border border-[var(--accent)] rounded-full text-[10px] font-bold uppercase text-[var(--accent)]">
-            Full-time
-          </div>
-        </div>
+        <div className="flex flex-col gap-24">
+          {experiences.map((exp, i) => (
+            <div key={i} className="experience-row grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 relative z-10">
 
-        <div className="md:col-span-9 md:pl-12 mb-20 relative z-10">
-          <div className="mb-8">
-            <h3 className="exp-content text-5xl md:text-7xl font-black uppercase text-[var(--foreground)] tracking-tighter mb-2">
-              Sharaco Technologies
-            </h3>
-            <h4 className="exp-content text-xl md:text-2xl font-light text-[var(--foreground)] opacity-80">
-              Software Engineer - .NET Backend
-            </h4>
-          </div>
-          <p className="exp-content text-lg md:text-xl font-light leading-relaxed opacity-70 max-w-3xl">
-            Currently specializing in ASP.NET Web API and Core ecosystems.
-            Focused on building scalable backend architectures and optimizing
-            server-side performance for enterprise-level applications.
-          </p>
-        </div>
-
-        {/* --- 02: PREVIOUS ROLE (Bridgeon) --- */}
-        <div className="md:col-span-3 md:text-right py-2 relative z-10">
-          <h3 className="exp-content text-2xl font-black uppercase text-[var(--foreground)]">
-            2025
-          </h3>
-          <span className="exp-content font-mono text-sm opacity-60 uppercase tracking-widest block mt-1">
-            Apr — Jan 2026
-          </span>
-          <div className="exp-content mt-4 inline-block px-3 py-1 border border-[var(--border-color)] rounded-full text-[10px] font-bold uppercase opacity-60">
-            Trainee
-          </div>
-        </div>
-
-        <div className="md:col-span-9 md:pl-12 relative z-10">
-          <div className="mb-8">
-            <h3 className="exp-content text-5xl md:text-7xl font-black uppercase text-[var(--foreground)] tracking-tighter mb-2">
-              Bridgeon
-            </h3>
-            <h4 className="exp-content text-xl md:text-2xl font-light text-[var(--foreground)] opacity-80">
-              .NET & React Developer Trainee
-            </h4>
-          </div>
-
-          <p className="exp-content text-lg md:text-xl font-light leading-relaxed opacity-70 mb-12 max-w-3xl">
-            Developed full-stack features contributing directly to ERP modules.
-            Architected modular UI components in React and implemented secure
-            JWT-based authentication and RBAC across multiple internal systems.
-          </p>
-
-          {/* --- KEY DELIVERABLES --- */}
-          <div className="exp-content">
-            <h5 className="font-mono text-xs uppercase tracking-widest opacity-50 mb-8 border-b border-[var(--border-color)] pb-4">
-              // Key Deliverables & Modules (Bridgeon)
-            </h5>
-
-            <div className="space-y-8">
-              {/* Smart Serve */}
-              <div className="group flex flex-col md:flex-row gap-6 hover:bg-[var(--card-bg)] p-6 -mx-6 rounded-2xl transition-colors duration-300">
-                <div className="w-12 h-12 flex items-center justify-center border border-[var(--border-color)] rounded-full text-[var(--accent)] font-bold shrink-0">
-                  01
-                </div>
-                <div>
-                  <h6 className="text-xl font-bold uppercase mb-2 group-hover:text-[var(--accent)] transition-colors">
-                    Smart Serve ERP
-                  </h6>
-                  <p className="text-sm md:text-base opacity-70 leading-relaxed mb-3">
-                    Built a comprehensive Vehicle Service Management System,
-                    digitizing job cards and inventory tracking.
-                  </p>
-                  <div className="flex gap-3 text-xs font-mono opacity-50 uppercase">
-                    <span>ASP.NET Core</span> <span>/</span> <span>Dapper</span>{" "}
-                    <span>/</span> <span>React</span>
-                  </div>
+              {/* --- LEFT COL: DATES --- */}
+              <div className="md:col-span-3 md:text-right">
+                <h3 className="text-4xl md:text-5xl font-black uppercase text-[var(--foreground)] tracking-tight items-center flex md:justify-end gap-3">
+                  {exp.year}
+                  {/* Dot indicator for timeline */}
+                  <span className="hidden md:block w-3 h-3 bg-[var(--background)] border-2 border-[var(--accent)] rounded-full translate-x-[26px]"></span>
+                </h3>
+                <span className="font-mono text-sm opacity-60 uppercase tracking-widest block mt-1">
+                  {exp.status}
+                </span>
+                <div className="mt-4 inline-block px-3 py-1 border border-[var(--accent)] rounded-full text-[10px] font-bold uppercase text-[var(--accent)]">
+                  {exp.type}
                 </div>
               </div>
 
-              {/* Smart Desk */}
-              <div className="group flex flex-col md:flex-row gap-6 hover:bg-[var(--card-bg)] p-6 -mx-6 rounded-2xl transition-colors duration-300">
-                <div className="w-12 h-12 flex items-center justify-center border border-[var(--border-color)] rounded-full text-[var(--accent)] font-bold shrink-0">
-                  02
+              {/* --- RIGHT COL: DETAILS --- */}
+              <div className="md:col-span-9 md:pl-8">
+                <div className="mb-8">
+                  <h3 className="text-4xl md:text-6xl font-black uppercase text-[var(--foreground)] tracking-tighter mb-2">
+                    {exp.company}
+                  </h3>
+                  <h4 className="text-xl md:text-2xl font-light text-[var(--foreground)] opacity-80">
+                    {exp.role}
+                  </h4>
                 </div>
-                <div>
-                  <h6 className="text-xl font-bold uppercase mb-2 group-hover:text-[var(--accent)] transition-colors">
-                    Smart Desk System
-                  </h6>
-                  <p className="text-sm md:text-base opacity-70 leading-relaxed mb-3">
-                    Engineered multi-tenant architecture with strict RBAC for
-                    SaaS-ready office environments.
-                  </p>
-                  <div className="flex gap-3 text-xs font-mono opacity-50 uppercase">
-                    <span>EF Core</span> <span>/</span> <span>SQL Server</span>{" "}
-                    <span>/</span> <span>Redux</span>
-                  </div>
-                </div>
-              </div>
 
-              {/* ShoeCart */}
-              <div className="group flex flex-col md:flex-row gap-6 hover:bg-[var(--card-bg)] p-6 -mx-6 rounded-2xl transition-colors duration-300">
-                <div className="w-12 h-12 flex items-center justify-center border border-[var(--border-color)] rounded-full text-[var(--accent)] font-bold shrink-0">
-                  03
-                </div>
-                <div>
-                  <h6 className="text-xl font-bold uppercase mb-2 group-hover:text-[var(--accent)] transition-colors">
-                    ShoeCart E-Commerce
-                  </h6>
-                  <p className="text-sm md:text-base opacity-70 leading-relaxed mb-3">
-                    Developed a high-performance shopping platform focused on
-                    state management efficiency and JWT auth.
-                  </p>
-                  <div className="flex gap-3 text-xs font-mono opacity-50 uppercase">
-                    <span>Web API</span> <span>/</span>{" "}
-                    <span>Authentication</span> <span>/</span>{" "}
-                    <span>React</span>
+                <p className="text-lg md:text-xl font-light leading-relaxed opacity-70 mb-12 max-w-3xl">
+                  {exp.description}
+                </p>
+
+                {/* Deliverables Grid (If available) */}
+                {exp.deliverables.length > 0 && (
+                  <div className="grid grid-cols-1 gap-6">
+                    {exp.deliverables.map((item) => (
+                      <div key={item.id} className="group p-6 border border-[var(--border-color)] hover:border-[var(--accent)] rounded-2xl transition-all duration-300 hover:bg-[var(--card-bg)]">
+                        <div className="flex flex-col md:flex-row gap-4 justify-between items-start">
+                          <div>
+                            <h5 className="text-lg font-bold uppercase mb-2 group-hover:text-[var(--accent)] transition-colors">
+                              {item.title}
+                            </h5>
+                            <p className="text-sm opacity-70 leading-relaxed max-w-xl mb-4">
+                              {item.desc}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {item.stack.map(tech => (
+                                <span key={tech} className="text-[10px] uppercase font-mono px-2 py-1 bg-[var(--foreground)]/5 rounded">
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                          <span className="text-4xl font-black opacity-10 text-[var(--foreground)] group-hover:opacity-20 group-hover:text-[var(--accent)] transition-all">
+                            {item.id}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                </div>
+                )}
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

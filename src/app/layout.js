@@ -1,7 +1,7 @@
-import Preloader from "@/components/PreLoader";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import ClientSideComponents from "@/components/ClientSideComponents";
 
 
 
@@ -14,11 +14,11 @@ export const metadata = {
   },
   description: "Portfolio of Mohammed Rinshad, a Full Stack Developer from Tirur, Kerala. Expert in ASP.NET Core, React, and Clean Architecture.",
   keywords: [
-    "Mohammed Rinshad", 
-    "Rinshad Developer", 
-    "Full Stack Developer Kerala", 
-    ".NET Developer Malappuram", 
-    "React Developer Tirur", 
+    "Mohammed Rinshad",
+    "Rinshad Developer",
+    "Full Stack Developer Kerala",
+    ".NET Developer Malappuram",
+    "React Developer Tirur",
     "ASP.NET Core Expert"
   ],
   authors: [{ name: "Mohammed Rinshad" }],
@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <Preloader />
+          <ClientSideComponents />
           <SmoothScroll>
             {children}
           </SmoothScroll>
