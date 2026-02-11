@@ -88,7 +88,7 @@ export default function About() {
         <div className="md:col-span-3">
           <h2 className="about-bio text-xs font-mono text-[var(--accent)] uppercase tracking-[0.2em] sticky top-32 flex items-center gap-3">
             <span className="w-2 h-2 bg-[var(--accent)] rounded-full animate-pulse"></span>
-            ( 01 ) Profile
+            About Mohammed Rinshad – ASP.NET Core Backend Developer
           </h2>
         </div>
 
@@ -130,7 +130,7 @@ export default function About() {
           {/* 2. TECH SPECS LIST */}
           <div className="w-full" ref={specsRef} id="techstack">
             <h4 className="about-bio font-mono text-xs uppercase tracking-widest opacity-40 mb-8">
-              // Technical Specifications
+              Backend Technology Stack – .NET, EF Core, SQL Server, Redis
             </h4>
 
             <div className="flex flex-col">

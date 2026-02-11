@@ -45,8 +45,8 @@ export default function Projects() {
       id: "01",
       title: "Smart Serve",
       category: "Vehicle ERP System",
-      pitch:
-        "A complete solution for Service Centers. Digitized job cards and inventory tracking, reducing manual processing time by 40%.",
+      description:
+        "This project is a comprehensive multi-tenant ERP backend designed for high-volume vehicle service centers, built using ASP.NET Core Web API and SQL Server. I implemented a Clean Architecture approach with the Repository Pattern to strictly separate domain logic from infrastructure concerns, ensuring maintainability and testability. To address performance bottlenecks in job card processing, I optimized complex SQL queries using indexing and execution plan analysis, reducing average response times from 900ms to under 120ms. Security was enforced using JWT authentication with granular role-based access control (RBAC) to manage technician and admin permissions effectively.",
       stack: ["ASP.NET Core", "React", "Dapper", "SQL"],
       theme: "light",
     },
@@ -54,8 +54,8 @@ export default function Projects() {
       id: "02",
       title: "Smart Desk",
       category: "Office Management",
-      pitch:
-        "SaaS-ready architecture. Manages 5+ office environments with strict Role-Based Access Control (RBAC) and subscription logic.",
+      description:
+        "Smart Desk is a scalable SaaS-ready office management system engineered to support multiple tenant environments with strict data isolation. Built on ASP.NET Core and Entity Framework Core, the backend leverages a multi-tenant database strategy to ensure data security and performance. I integrated a robust Role-Based Access Control (RBAC) system to manage hierarchical permissions across organizations. The system features a real-time notification engine using SignalR and optimized LINQ queries to handle complex reporting data efficiently, ensuring a responsive experience for administrative dashboards.",
       stack: ["EF Core", "Redux", "Azure", "Clean Arch"],
       theme: "dark",
     },
@@ -63,8 +63,8 @@ export default function Projects() {
       id: "03",
       title: "ShoeCart",
       category: "E-Commerce Platform",
-      pitch:
-        "High-performance shopping experience. Features real-time cart synchronization, dynamic filtering, and secure JWT authentication.",
+      description:
+        "A high-performance e-commerce backend API architected to handle concurrent user traffic and real-time inventory updates. Built with ASP.NET Core Web API and SQL Server, the system features dynamic product filtering and search capabilities optimized for speed. I implemented secure JWT authentication for user sessions and integrated Stripe for secure payment processing. The application uses caching strategies (Redis) to minimize database load for frequently accessed product data, ensuring sub-100ms API response times during peak traffic periods.",
       stack: ["Web API", "React", "Auth", "SQL"],
       theme: "light",
     },
@@ -72,8 +72,8 @@ export default function Projects() {
       id: "04",
       title: "MultiAgent AI",
       category: "Conversational AI Platform",
-      pitch:
-        "Create and deploy multiple AI agents with distinct roles, behaviors, and document-backed knowledge bases. Supports continuous chat memory and serverless scaling.",
+      description:
+        "An advanced conversational AI platform designed to deploy and orchestrate multiple autonomous agents. The backend integrates with Groq LLM API for high-speed inference and uses Firebase for real-time state management. I implemented a vector-based knowledge retrieval system (RAG) to allow agents to access document-specific context. The architecture supports serverless scaling on Vercel, enabling the system to handle fluctuating concurrent chat sessions without infrastructure management overhead. Security is managed via secure API key handling and rate limiting.",
       stack: ["React", "Firebase", "Groq LLM", "Vercel"],
       theme: "dark",
     },
@@ -107,7 +107,7 @@ export default function Projects() {
           <div className="mb-6 flex items-center gap-4">
             <span className="w-12 h-[2px] bg-[var(--accent)]"></span>
             <span className="font-mono text-sm uppercase tracking-widest text-[var(--accent)]">
-              Work Archive 2025
+              Backend Projects – REST APIs, SQL Server & System Architecture
             </span>
           </div>
           <h2 className="text-6xl md:text-9xl font-black text-[var(--foreground)] leading-[0.8] tracking-tighter uppercase">
@@ -184,8 +184,8 @@ export default function Projects() {
 
               {/* Details */}
               <div className="z-10">
-                <p className="text-lg md:text-xl opacity-80 mb-10 border-l-2 border-[var(--accent)] pl-6 max-w-lg font-light leading-relaxed">
-                  {project.pitch}
+                <p className="text-base md:text-lg opacity-80 mb-10 border-l-2 border-[var(--accent)] pl-6 max-w-2xl font-light leading-relaxed">
+                  {project.description}
                 </p>
                 <div className="flex flex-wrap gap-3">
                   {project.stack.map((tag) => (

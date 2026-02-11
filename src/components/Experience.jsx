@@ -96,7 +96,7 @@ export default function Experience() {
       {/* --- SECTION HEADER --- */}
       <div className="flex flex-col md:flex-row justify-between items-end mb-20">
         <h2 className="text-sm font-mono text-[var(--accent)] uppercase tracking-widest mb-4 md:mb-0">
-          ( 02 ) Professional History
+          Professional Backend Development Experience (C# / .NET)
         </h2>
         <div className="hidden md:flex items-center gap-4 text-xs font-mono uppercase tracking-widest opacity-60">
           <span>Career Timeline</span>

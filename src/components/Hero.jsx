@@ -24,7 +24,7 @@ export default function Hero() {
 
   return (
     <section ref={container} className="h-screen flex flex-col justify-center px-6 md:px-12 pt-20">
-      <p className="text-[var(--accent)] font-mono mb-4 tracking-widest uppercase">Full Stack Developer</p>
+      <p className="text-[var(--accent)] font-mono mb-4 tracking-widest uppercase">.NET Backend Developer specializing in ASP.NET Core APIs</p>
 
       <div className="overflow-hidden">
         <h1 className="text-[13vw] md:text-[14vw] leading-[0.8] font-black uppercase tracking-tighter text-[var(--foreground)]">
