@@ -66,7 +66,7 @@ export default function Navbar() {
       ref={navRef}
       className="fixed top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none"
     >
-      <div className="pointer-events-auto flex items-center gap-2 p-1.5 pl-5 bg-[var(--background)]/70 backdrop-blur-md border border-[var(--border-color)] rounded-full shadow-2xl ring-1 ring-[var(--foreground)]/5 transition-all duration-300 hover:scale-[1.01]">
+      <div className="pointer-events-auto flex items-center gap-2 p-1.5 pl-5 bg-[var(--background)]/40 backdrop-blur-2xl saturate-150 border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.12)] ring-1 ring-white/5 transition-all duration-300 hover:bg-[var(--background)]/50">
 
         {/* --- LOGO --- */}
         <Magnetic>

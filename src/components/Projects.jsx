@@ -127,12 +127,12 @@ export default function Projects() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="w-[90vw] lg:w-[55vw] h-[55vh] lg:h-[70vh] relative group shrink-0"
+            className="w-[90vw] lg:w-[45vw] h-[65vh] lg:h-[75vh] relative group shrink-0"
           >
             {/* CARD CONTAINER */}
             <div
               className={`
-                    absolute inset-0 border flex flex-col justify-between overflow-hidden shadow-2xl p-8 md:p-12 transition-colors duration-500
+                    absolute inset-0 border flex flex-col overflow-hidden shadow-2xl p-8 md:p-12 transition-all duration-500
                     ${project.theme === "dark"
                   ? "bg-[var(--foreground)] text-[var(--background)] border-[var(--foreground)]"
                   : "bg-[var(--card-bg)] border-[var(--border-color)] hover:border-[var(--accent)]"
@@ -150,49 +150,48 @@ export default function Projects() {
               </span>
 
               {/* Header */}
-              <div className="flex justify-between items-start z-10">
-                <div>
+              <div className="flex justify-between items-start z-10 mb-8 md:mb-12">
+                <div className="flex-1 min-w-0 pr-4">
                   <span
-                    className={`font-mono text-xs tracking-widest uppercase mb-3 block ${project.theme === "dark" ? "text-[var(--accent)]" : "text-[var(--accent)]"}`}
+                    className={`font-mono text-[10px] md:text-xs tracking-widest uppercase mb-3 block opacity-60 ${project.theme === "dark" ? "text-[var(--accent)]" : "text-[var(--accent)]"}`}
                   >
                     {project.category}
                   </span>
                   <h3
-                    className={`text-5xl md:text-7xl font-black uppercase leading-[0.9] ${project.theme === "dark" ? "" : "text-[var(--foreground)]"}`}
+                    className={`text-4xl md:text-6xl font-black uppercase leading-[0.9] tracking-tighter ${project.theme === "dark" ? "" : "text-[var(--foreground)]"}`}
                   >
-                    {project.title.split(" ").map((word, i) => (
-                      <span key={i} className="block">
-                        {word}
-                      </span>
-                    ))}
+                    {project.title}
                   </h3>
                 </div>
                 <Magnetic>
                   <div
                     className={`
-                              p-4 rounded-full border transition-all cursor-pointer
-                              ${project.theme === "dark"
+                                p-4 rounded-full border transition-all cursor-pointer shrink-0
+                                ${project.theme === "dark"
                         ? "border-[var(--background)] hover:bg-[var(--accent)] hover:border-[var(--accent)] hover:text-black"
                         : "border-[var(--foreground)] group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] group-hover:text-black"
                       }
                           `}
                   >
-                    <FiArrowUpRight className="text-3xl" />
+                    <FiArrowUpRight className="text-2xl md:text-3xl" />
                   </div>
                 </Magnetic>
               </div>
 
-              {/* Details */}
-              <div className="z-10">
-                <p className="text-base md:text-lg opacity-80 mb-10 border-l-2 border-[var(--accent)] pl-6 max-w-2xl font-light leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-3">
+              {/* Content Area - Fixed & Truncated */}
+              <div className="z-10 flex flex-col flex-1 justify-between overflow-hidden">
+                <div className="max-w-2xl">
+                  <p className="text-sm md:text-base opacity-70 mb-8 border-l-2 border-[var(--accent)] pl-4 md:pl-6 font-light leading-relaxed line-clamp-4 md:line-clamp-6">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2 md:gap-3 mt-auto pt-6">
                   {project.stack.map((tag) => (
                     <span
                       key={tag}
                       className={`
-                                    px-4 py-2 text-xs font-bold uppercase border transition-colors cursor-default
+                                    px-3 py-1.5 md:px-4 md:py-2 text-[10px] md:text-xs font-bold uppercase border transition-colors cursor-default
                                     ${project.theme === "dark"
                           ? "border-[var(--background)]/30 hover:bg-[var(--background)] hover:text-[var(--foreground)]"
                           : "border-[var(--foreground)]/20 hover:bg-[var(--foreground)] hover:text-[var(--background)]"

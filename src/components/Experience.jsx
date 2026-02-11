@@ -147,24 +147,24 @@ export default function Experience() {
                 {exp.deliverables.length > 0 && (
                   <div className="grid grid-cols-1 gap-6">
                     {exp.deliverables.map((item) => (
-                      <div key={item.id} className="group p-6 border border-[var(--border-color)] hover:border-[var(--accent)] rounded-2xl transition-all duration-300 hover:bg-[var(--card-bg)]">
-                        <div className="flex flex-col md:flex-row gap-4 justify-between items-start">
-                          <div>
-                            <h5 className="text-lg font-bold uppercase mb-2 group-hover:text-[var(--accent)] transition-colors">
+                      <div key={item.id} className="group p-6 md:p-8 bg-white/[0.02] dark:bg-white/[0.01] backdrop-blur-2xl border border-white/5 hover:border-[var(--accent)]/30 rounded-3xl transition-all duration-700 hover:bg-[var(--card-bg)] shadow-[0_4px_24px_rgba(0,0,0,0.03)]">
+                        <div className="flex flex-col md:flex-row gap-6 justify-between items-start">
+                          <div className="flex-1">
+                            <h5 className="text-xl font-bold uppercase tracking-tight mb-2 group-hover:text-[var(--accent)] transition-colors duration-500">
                               {item.title}
                             </h5>
-                            <p className="text-sm opacity-70 leading-relaxed max-w-xl mb-4">
+                            <p className="text-base font-light opacity-60 leading-relaxed max-w-xl mb-6">
                               {item.desc}
                             </p>
                             <div className="flex flex-wrap gap-2">
                               {item.stack.map(tech => (
-                                <span key={tech} className="text-[10px] uppercase font-mono px-2 py-1 bg-[var(--foreground)]/5 rounded">
+                                <span key={tech} className="text-[10px] uppercase font-bold tracking-widest px-3 py-1.5 bg-[var(--foreground)]/5 rounded-full border border-[var(--border-color)]">
                                   {tech}
                                 </span>
                               ))}
                             </div>
                           </div>
-                          <span className="text-4xl font-black opacity-10 text-[var(--foreground)] group-hover:opacity-20 group-hover:text-[var(--accent)] transition-all">
+                          <span className="text-5xl font-black opacity-[0.03] text-[var(--foreground)] group-hover:opacity-[0.08] group-hover:text-[var(--accent)] transition-all duration-700">
                             {item.id}
                           </span>
                         </div>

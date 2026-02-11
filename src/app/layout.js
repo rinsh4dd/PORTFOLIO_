@@ -3,8 +3,14 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ClientSideComponents from "@/components/ClientSideComponents";
 import Preloader from "@/components/PreLoader";
+import { Outfit } from "next/font/google";
 import Script from "next/script";
 
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
 
 
 // 1. The SEO Configuration
@@ -12,46 +18,47 @@ import Script from "next/script";
 export const metadata = {
   metadataBase: new URL('https://rinsh4dd.vercel.app'),
   title: {
-    default: "Mohammed Rinshad | Full Stack Developer .NET & React",
+    default: "Mohammed Rinshad - .NET Backend Developer | ASP.NET Core & SQL Server",
     template: "%s | Mohammed Rinshad"
   },
-  description: "Don't hire average. Mohammed Rinshad builds high-performance, scalable .NET & React applications that CRUSH the competition. See why top brands trust Rinshad.",
+  alternates: {
+    canonical: "https://rinsh4dd.vercel.app",
+  },
+
+  description:
+    "Mohammed Rinshad is a .NET Backend Developer building scalable ASP.NET Core APIs, SQL Server systems and high-performance backend architecture. Portfolio, projects and experience.",
+
   keywords: [
     "Mohammed Rinshad",
-    "Mohammed Rinshad C",
-    "rinsh4dd",
-    "vercel rinshad",
-    "Rinshad Developer",
-    "Full Stack Developer Kerala",
-    "Full Stack Developer Tirur",
-    "Full Stack Developer Malappuram",
-    ".NET Developer Malappuram",
-    "React Developer Tirur",
-    "ASP.NET Core Expert",
-    "Smart Serve ERP",
-    "Smart Desk System",
-    "Bridgeon",
-    "Sharaco Technologies",
-
+    "Rinshad .NET Developer",
+    ".NET Backend Developer Kerala",
+    "ASP.NET Core Developer India",
+    "C# Backend Developer",
+    "SQL Server Developer",
+    "Entity Framework Core Developer",
+    "REST API Developer",
+    "Backend Developer Portfolio"
   ],
+
   authors: [{ name: "Mohammed Rinshad" }],
   creator: "Mohammed Rinshad",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://rinsh4dd.vercel.app",
-    title: "Mohammed Rinshad - Full Stack Developer",
-    description: "🚀 See the Full Stack Developer redefining web performance. .NET Core, React & Next.js Expert. Click to view the portfolio that's turning heads.",
+    title: "Mohammed Rinshad - .NET Backend Developer",
+    description: "ASP.NET Core backend developer building scalable APIs and SQL Server architectures.",
     siteName: "Mohammed Rinshad Portfolio",
     images: [
       {
-        url: "/Rinshad.jpeg",
+        url: "https://rinsh4dd.vercel.app/Rinshad.jpeg",
         width: 1200,
         height: 630,
-        alt: "Mohammed Rinshad Portfolio"
+        alt: "Mohammed Rinshad"
       },
     ],
   },
+
   robots: {
     index: true,
     follow: true,
@@ -72,26 +79,35 @@ export default function RootLayout({ children }) {
   // 2. Structured Data (JSON-LD)
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    "mainEntity": {
-      "@type": "Person",
-      "name": "Mohammed Rinshad",
-      "alternateName": "Rinsh4dd",
-      "url": "https://rinsh4dd.vercel.app",
-      "sameAs": [
-        "https://linkedin.com/in/rinshad",
-        "https://github.com/rinsh4dd",
-        "https://instagram.com/rinsh4dd",
-        "https://buymeacoffee.com/rinsh4dd"
-      ],
-      "jobTitle": "Full Stack Developer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Sharaco Technologies"
-      },
-      "knowsAbout": ["ASP.NET Core", "React", "Clean Architecture", "SQL", "Cloud Computing"]
-    }
+    "@type": "Person",
+    "name": "Mohammed Rinshad",
+    "alternateName": "Rinsh4dd",
+    "url": "https://rinsh4dd.vercel.app",
+    "image": "https://rinsh4dd.vercel.app/Rinshad.jpeg",
+    "jobTitle": ".NET Backend Developer",
+    "description": "ASP.NET Core backend developer specializing in scalable REST APIs and SQL Server systems.",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Sharaco Technologies"
+    },
+    "knowsAbout": [
+      "ASP.NET Core",
+      "C#",
+      ".NET",
+      "SQL Server",
+      "REST API",
+      "Entity Framework Core",
+      "Clean Architecture",
+      "System Design"
+    ],
+    "sameAs": [
+      "https://github.com/rinsh4dd",
+      "https://linkedin.com/in/rinshad",
+      "https://instagram.com/rinsh4dd",
+      "https://buymeacoffee.com/rinsh4dd"
+    ]
   };
+
 
   return (
     <html lang="en" suppressHydrationWarning>

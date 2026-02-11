@@ -6,7 +6,7 @@
   --color-accent: var(--accent);
   --color-card: var(--card-bg);
   --color-border: var(--border-color);
-  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-outfit), system-ui, -apple-system, sans-serif;
 }
 
 :root {
@@ -14,23 +14,22 @@
   --foreground: #0a0a0a;
   --accent: #2563eb;
   /* Professional Blue */
-  --card-bg: #f3f4f6;
+  --card-bg: #f8f9fa;
   --border-color: #e5e7eb;
 }
 
 .dark {
   --background: #050505;
-  /* Deep Void Black */
   --foreground: #ffffff;
   --accent: #ccff00;
   /* Gen Z Cyber Lime */
-  --card-bg: #111111;
-  --border-color: #222222;
+  --card-bg: #0c0c0c;
+  --border-color: #1a1a1a;
 }
 
 /* Custom "Modern Minimalist" Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -41,53 +40,66 @@
   background-color: var(--accent);
   border-radius: 20px;
   border: transparent;
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  opacity: 1;
+  background-color: var(--foreground);
 }
 
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden !important;
-  /* Force removal of bottom scrollbar */
+html {
+  scroll-behavior: initial;
+  /* Managed by Lenis */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out,
-    border-color 0.5s ease-in-out;
-  position: relative;
+  transition: background-color 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+    color 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  overflow-x: hidden !important;
+  width: 100%;
 }
 
+/* Premium Grain / Noise Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  filter: contrast(150%) brightness(150%);
+}
+
+/* Background Grid - Subtler & More Responsive */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.02;
+  opacity: 0.015;
   pointer-events: none;
   z-index: 0;
   background-image:
     linear-gradient(var(--foreground) 1px, transparent 1px),
     linear-gradient(90deg, var(--foreground) 1px, transparent 1px);
-  background-size: 50px 50px;
+  background-size: 60px 60px;
 }
 
-/* Hide Scrollbar for cleaner look */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* Modern Utilities */
+.glass {
+  background: rgba(var(--foreground-rgb), 0.03);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(var(--foreground-rgb), 0.08);
 }
 
 /* Marquee Animation */
@@ -109,11 +121,22 @@ body::before {
 
 @media (min-width: 768px) {
   .animate-marquee {
-    animation-duration: 25s;
+    animation-duration: 22s;
   }
 }
 
 ::selection {
   background-color: var(--accent);
   color: var(--background);
+}
+
+/* Global focus states */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Remove default taps highlights */
+* {
+  -webkit-tap-highlight-color: transparent;
 }
