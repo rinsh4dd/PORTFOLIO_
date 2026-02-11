@@ -8,7 +8,7 @@ import Script from "next/script";
 
 
 // 1. The SEO Configuration
-// 1. The SEO Configuration
+
 export const metadata = {
   metadataBase: new URL('https://rinsh4dd.vercel.app'),
   title: {
