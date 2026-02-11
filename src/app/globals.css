@@ -28,28 +28,24 @@
   --border-color: #222222;
 }
 
-/* Custom "Gaming Neon" Scrollbar */
+/* Custom "Modern Minimalist" Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #000;
-  border-left: 1px solid #111;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  background-clip: padding-box;
-  border: 2px solid transparent;
-  /* Creates a floating look */
-  border-radius: 0;
-  box-shadow: 0 0 10px var(--accent), inset 0 0 5px rgba(255, 255, 255, 0.5);
+  background-color: var(--accent);
+  border-radius: 20px;
+  border: transparent;
+  opacity: 0.8;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--accent);
-  box-shadow: 0 0 20px var(--accent), inset 0 0 10px white;
+  opacity: 1;
 }
 
 html,

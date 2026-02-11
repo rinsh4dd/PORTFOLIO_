@@ -80,12 +80,12 @@ export default function Coffee() {
                             href="https://buymeacoffee.com/rinsh4dd"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative inline-flex items-center gap-4 px-8 py-6 border border-[var(--border-color)] hover:border-[var(--accent)] bg-[var(--background)] transition-all duration-500 cursor-pointer overflow-hidden"
+                            className="group relative inline-flex items-center gap-4 px-8 py-6 border border-[var(--accent)] md:border-[var(--border-color)] hover:border-[var(--accent)] bg-[var(--accent)]/5 md:bg-[var(--background)] transition-all duration-500 cursor-pointer overflow-hidden"
                         >
                             {/* Button Hover Glow Overlay */}
                             <div className="absolute inset-0 bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                            <span className="relative z-10 text-xl md:text-2xl font-black uppercase tracking-tight text-[var(--foreground)] group-hover:text-black transition-colors duration-500">
+                            <span className="relative z-10 text-xl md:text-2xl font-black uppercase tracking-tight text-[var(--accent)] md:text-[var(--foreground)] group-hover:text-black transition-colors duration-500">
                                 Support Now
                             </span>
                             <div className="relative z-10 p-3 border border-[var(--border-color)] group-hover:border-black/20 group-hover:bg-black/10 transition-all duration-500">
