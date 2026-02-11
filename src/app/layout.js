@@ -22,7 +22,7 @@ export const metadata = {
     "rinsh4dd",
     "rinshad.com",
     "rinshad.in",
-    "vercel rinshad", ,
+    "vercel rinshad",
     "Rinshad Developer",
     "Full Stack Developer Kerala",
     "Full Stack Developer Tirur",
@@ -50,7 +50,7 @@ export const metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Mohammed Rinshad Portfolio", "Mohammed Rinshad", "Mohammed Rinshad C"
+        alt: "Mohammed Rinshad Portfolio"
       },
     ],
   },
