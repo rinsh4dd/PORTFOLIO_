@@ -62,19 +62,19 @@ export default function About() {
   const specs = [
     {
       label: "Core Stack",
-      value: "C#, ASP.NET Core, Entity Framework Core, Dapper",
+      value: "C#, ASP.NET Core, EF Core, Dapper",
     },
     {
       label: "Frontend",
-      value: "React.js, JavaScript, Tailwind CSS, Context API",
+      value: "React.js, Next.js, JavaScript, Tailwind CSS",
     },
     {
-      label: "Data & Cloud",
-      value: "MS SQL Server, Azure SQL, Stored Procedures",
+      label: "Cloud & DB",
+      value: "Microsoft Azure, SQL Server, Docker, Redis",
     },
     {
-      label: "DevOps",
-      value: "Microsoft Azure, Git, GitHub, CI/CD",
+      label: "Development",
+      value: "Git, GitHub, Postman, Linux, CI/CD",
     },
   ];
   return (

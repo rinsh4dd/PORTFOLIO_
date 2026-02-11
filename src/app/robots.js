@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://rinsh4dd.vercel.app/sitemap.xml',
+    sitemap: 'https://rinsh4dd.vercel.app/sitemap.xm',
   }
-}
+} 

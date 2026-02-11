@@ -13,8 +13,8 @@ export default function Home() {
     <main className="bg-[var(--background)] selection:bg-[var(--accent)] selection:text-black">
       <Navbar />
       <Hero />
-      <Marquee />
       <About />
+      <Marquee />
       <Experience />
       <Projects />
       <Coffee />
