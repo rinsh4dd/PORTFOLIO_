@@ -15,16 +15,26 @@ export const metadata = {
     default: "Mohammed Rinshad | Full Stack Developer .NET & React",
     template: "%s | Mohammed Rinshad"
   },
-  description: "Portfolio of Mohammed Rinshad, a Full Stack Developer from Tirur, Kerala. Expert in ASP.NET Core, React, and Clean Architecture.",
+  description: "Don't hire average. Mohammed Rinshad builds high-performance, scalable .NET & React applications that CRUSH the competition. See why top brands trust Rinshad.",
   keywords: [
     "Mohammed Rinshad",
+    "Mohammed Rinshad C",
+    "rinsh4dd",
+    "rinshad.com",
+    "rinshad.in",
+    "vercel rinshad", ,
     "Rinshad Developer",
     "Full Stack Developer Kerala",
+    "Full Stack Developer Tirur",
+    "Full Stack Developer Malappuram",
     ".NET Developer Malappuram",
     "React Developer Tirur",
     "ASP.NET Core Expert",
     "Smart Serve ERP",
-    "Smart Desk System"
+    "Smart Desk System",
+    "Bridgeon",
+    "Sharaco Technologies",
+
   ],
   authors: [{ name: "Mohammed Rinshad" }],
   creator: "Mohammed Rinshad",
@@ -33,14 +43,14 @@ export const metadata = {
     locale: "en_US",
     url: "https://rinsh4dd.vercel.app",
     title: "Mohammed Rinshad - Full Stack Developer",
-    description: "Building scalable .NET & React applications. View my projects and experience.",
+    description: "🚀 See the Full Stack Developer redefining web performance. .NET Core, React & Next.js Expert. Click to view the portfolio that's turning heads.",
     siteName: "Mohammed Rinshad Portfolio",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Mohammed Rinshad Portfolio",
+        alt: "Mohammed Rinshad Portfolio", "Mohammed Rinshad", "Mohammed Rinshad C"
       },
     ],
   },
@@ -73,7 +83,8 @@ export default function RootLayout({ children }) {
       "sameAs": [
         "https://linkedin.com/in/rinshad",
         "https://github.com/rinsh4dd",
-        "https://instagram.com/rinsh4dd"
+        "https://instagram.com/rinsh4dd",
+        "https://buymeacoffee.com/rinsh4dd"
       ],
       "jobTitle": "Full Stack Developer",
       "worksFor": {
