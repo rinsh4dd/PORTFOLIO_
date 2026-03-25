@@ -6,6 +6,6 @@ export default function robots() {
         allow: '/',
       },
     ],
-    sitemap: 'https://rinsh4dd.vercel.app/sitemap.xml',
+    sitemap: 'https://rinshad.site/sitemap.xml',
   };
 } 

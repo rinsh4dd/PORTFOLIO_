@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://rinsh4dd.vercel.app';
+  const baseUrl = 'https://rinshad.site';
 
   return [
     {

@@ -16,13 +16,16 @@ const outfit = Outfit({
 // 1. The SEO Configuration
 
 export const metadata = {
-  metadataBase: new URL('https://rinsh4dd.vercel.app'),
+  metadataBase: new URL('https://rinshad.site'),
   title: {
     default: "Mohammed Rinshad - .NET Backend Developer | ASP.NET Core & SQL Server",
     template: "%s | Mohammed Rinshad"
   },
   alternates: {
-    canonical: "https://rinsh4dd.vercel.app",
+    canonical: "https://rinshad.site",
+  },
+  icons: {
+    icon: "/rinshadfavicon.jpeg",
   },
 
   description:
@@ -45,13 +48,13 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://rinsh4dd.vercel.app",
+    url: "https://rinshad.site",
     title: "Mohammed Rinshad - .NET Backend Developer",
     description: "ASP.NET Core backend developer building scalable APIs and SQL Server architectures.",
     siteName: "Mohammed Rinshad Portfolio",
     images: [
       {
-        url: "https://rinsh4dd.vercel.app/Rinshad.jpeg",
+        url: "https://rinshad.site/Rinshad.jpeg",
         width: 1200,
         height: 630,
         alt: "Mohammed Rinshad"
@@ -82,8 +85,8 @@ export default function RootLayout({ children }) {
     "@type": "Person",
     "name": "Mohammed Rinshad",
     "alternateName": "Rinsh4dd",
-    "url": "https://rinsh4dd.vercel.app",
-    "image": "https://rinsh4dd.vercel.app/Rinshad.jpeg",
+    "url": "https://rinshad.site",
+    "image": "https://rinshad.site/Rinshad.jpeg",
     "jobTitle": ".NET Backend Developer",
     "description": "ASP.NET Core backend developer specializing in scalable REST APIs and SQL Server systems.",
     "worksFor": {
