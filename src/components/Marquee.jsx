@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -22,6 +22,9 @@ const skills = [
 
 export default function Marquee() {
   const itemsRef = useRef([]);
+  const viewportRef = useRef(null);
+  const trackRef = useRef(null);
+  const isInteracting = useRef(false);
 
   useGSAP(() => {
     const items = itemsRef.current;
@@ -59,6 +62,76 @@ export default function Marquee() {
     return () => gsap.ticker.remove(updateSpotlight);
   });
 
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    const track = trackRef.current;
+    if (!viewport || !track) return;
+
+    let animationFrame;
+    let previousTime;
+    let resumeTimer;
+
+    const centerRail = () => {
+      viewport.scrollLeft = track.scrollWidth / 3;
+    };
+
+    const scrollRail = (time) => {
+      if (previousTime === undefined) {
+        previousTime = time;
+      }
+
+      const elapsed = time - previousTime;
+      previousTime = time;
+
+      if (!isInteracting.current) {
+        const segmentWidth = track.scrollWidth / 3;
+        const duration = window.matchMedia("(min-width: 768px)").matches
+          ? 22000
+          : 8000;
+
+        if (viewport.scrollLeft >= segmentWidth * 2) {
+          viewport.scrollLeft -= segmentWidth;
+        } else if (viewport.scrollLeft <= 0) {
+          viewport.scrollLeft += segmentWidth;
+        }
+
+        viewport.scrollLeft += (segmentWidth / duration) * elapsed;
+      }
+
+      animationFrame = requestAnimationFrame(scrollRail);
+    };
+
+    const pauseRail = () => {
+      isInteracting.current = true;
+      clearTimeout(resumeTimer);
+    };
+
+    const resumeRail = () => {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => {
+        isInteracting.current = false;
+      }, 500);
+    };
+
+    const initialFrame = requestAnimationFrame(() => {
+      centerRail();
+      animationFrame = requestAnimationFrame(scrollRail);
+    });
+
+    viewport.addEventListener("pointerdown", pauseRail, { passive: true });
+    window.addEventListener("pointerup", resumeRail, { passive: true });
+    window.addEventListener("pointercancel", resumeRail, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(initialFrame);
+      cancelAnimationFrame(animationFrame);
+      clearTimeout(resumeTimer);
+      viewport.removeEventListener("pointerdown", pauseRail);
+      window.removeEventListener("pointerup", resumeRail);
+      window.removeEventListener("pointercancel", resumeRail);
+    };
+  }, []);
+
   return (
     <section id="skills" className="py-20 md:py-32 bg-[var(--background)] overflow-hidden border-y border-[var(--border-color)] relative">
       {/* Subtle background glow */}
@@ -88,9 +161,12 @@ export default function Marquee() {
         </div>
 
         {/* Marquee Container */}
-        <div className="relative flex w-full">
-          <div className="animate-marquee flex items-center gap-8 md:gap-14 whitespace-nowrap min-w-full py-16">
-            {[...skills, ...skills].map((skill, i) => (
+        <div
+          ref={viewportRef}
+          className="relative w-full overflow-x-auto touch-pan-x [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          <div ref={trackRef} className="flex w-max min-w-full items-center gap-8 py-16 md:gap-14">
+            {[...skills, ...skills, ...skills].map((skill, i) => (
               <div
                 key={i}
                 ref={(el) => (itemsRef.current[i] = el)}

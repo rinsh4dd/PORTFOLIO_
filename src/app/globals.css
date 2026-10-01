@@ -135,23 +135,6 @@ body::before {
   border: 1px solid rgba(var(--foreground-rgb), 0.08);
 }
 
-/* Marquee Animation */
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  display: flex;
-  white-space: nowrap;
-  animation: marquee 8s linear infinite;
-}
-
 @keyframes preloader-flash {
   0% {
     opacity: 0;
@@ -176,12 +159,6 @@ body::before {
 
 .preloader-flash {
   animation: preloader-flash 420ms ease-out both;
-}
-
-@media (min-width: 768px) {
-  .animate-marquee {
-    animation-duration: 22s;
-  }
 }
 
 ::selection {
