@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const role = "Full Stack Developer";
+const roleWords = ["Full ", "Stack ", "Developer"];
 
 export default function Preloader() {
   const [show, setShow] = useState(true);
   const [fade, setFade] = useState(false);
   const [entered, setEntered] = useState(false);
   const [typedRole, setTypedRole] = useState("");
+  const flashSound = useRef(null);
 
   useEffect(() => {
     // Disable scroll when preloader is active - using a timeout ensure it hits after content paints
@@ -18,27 +19,55 @@ export default function Preloader() {
     };
 
     lockScroll();
+    flashSound.current = new Audio(
+      "/sounds/camera-flash-sound-effect-soundeffect-soundeffectnocopyright-shorts-128-ytshorts.savetube.me.mp3",
+    );
+    flashSound.current.preload = "auto";
+    flashSound.current.volume = 0.35;
+    flashSound.current.muted = true;
+    flashSound.current.loop = true;
+    void flashSound.current.play().catch(() => undefined);
 
     const entranceFrame = requestAnimationFrame(() => {
       setEntered(true);
     });
 
-    let typingInterval;
+    let typingTimer;
     const typingStart = setTimeout(() => {
+      let wordIndex = 0;
       let characterIndex = 0;
-      typingInterval = setInterval(() => {
-        characterIndex += 1;
-        setTypedRole(role.slice(0, characterIndex));
 
-        if (characterIndex === role.length) {
-          clearInterval(typingInterval);
+      const typeNextCharacter = () => {
+        if (wordIndex === roleWords.length) {
+          return;
         }
-      }, 65);
+
+        const word = roleWords[wordIndex];
+        if (characterIndex < word.length) {
+          const nextCharacter = word[characterIndex];
+          setTypedRole((value) => value + nextCharacter);
+          characterIndex += 1;
+          typingTimer = setTimeout(typeNextCharacter, 65);
+          return;
+        }
+
+        wordIndex += 1;
+        characterIndex = 0;
+        const wordPause = wordIndex === 1 ? 360 : 520;
+        typingTimer = setTimeout(typeNextCharacter, wordPause);
+      };
+
+      typeNextCharacter();
     }, 450);
 
     // 1. Start fading out after 2.2 seconds
     const timer = setTimeout(() => {
       setFade(true);
+      const sound = flashSound.current;
+      sound.currentTime = 0;
+      sound.loop = false;
+      sound.muted = false;
+      void sound.play().catch(() => undefined);
     }, 2200);
 
     // 2. Remove from DOM after animation is done (2.7s total) and unlock scroll
@@ -51,9 +80,11 @@ export default function Preloader() {
     return () => {
       cancelAnimationFrame(entranceFrame);
       clearTimeout(typingStart);
-      clearInterval(typingInterval);
+      clearTimeout(typingTimer);
       clearTimeout(timer);
       clearTimeout(cleanup);
+      flashSound.current?.pause();
+      flashSound.current = null;
       document.body.style.overflow = "unset";
       document.documentElement.style.overflow = "unset";
     };
