@@ -86,8 +86,8 @@ export default function Marquee() {
       if (!isInteracting.current) {
         const segmentWidth = track.scrollWidth / 3;
         const duration = window.matchMedia("(min-width: 768px)").matches
-          ? 22000
-          : 8000;
+          ? 36000
+          : 24000;
 
         if (viewport.scrollLeft >= segmentWidth * 2) {
           viewport.scrollLeft -= segmentWidth;
