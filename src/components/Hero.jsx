@@ -25,7 +25,7 @@ export default function Hero() {
   return (
     <section ref={container} className="h-screen flex flex-col justify-center px-6 md:px-12 pt-20 relative overflow-hidden">
       <p className="hero-pill text-[var(--accent)] font-mono mb-6 tracking-[0.4em] uppercase text-[10px] md:text-xs opacity-80">
-        .NET Backend Developer • ASP.NET Core Specialist
+        Full Stack .NET Developer • ASP.NET Core &amp; React.js
       </p>
 
       <div className="overflow-hidden mb-2">
@@ -46,7 +46,7 @@ export default function Hero() {
       </div>
 
       <div className="flex flex-wrap gap-4 mt-16">
-        {['ASP.NET Core', 'EF Core', 'SQL Server', 'React'].map((tech) => (
+        {['ASP.NET Core', 'C# / Dapper', 'SQL Server', 'React.js', 'Tailwind CSS'].map((tech) => (
           <span key={tech} className="hero-pill px-6 py-3 bg-[var(--card-bg)]/20 backdrop-blur-xl border border-[var(--border-color)] rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest hover:bg-[var(--accent)] hover:text-black hover:border-[var(--accent)] transition-all duration-500 cursor-default">
             {tech}
           </span>

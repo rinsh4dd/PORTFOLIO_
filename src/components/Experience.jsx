@@ -50,38 +50,59 @@ export default function Experience() {
   const experiences = [
     {
       year: "2026",
-      status: "Present",
+      status: "Jan 2026 – Present",
       type: "Full Time",
-      company: "Sharaco Technologies",
-      role: "Software Engineer - .NET Backend",
-      description: "Currently specializing in ASP.NET Web API and Core ecosystems. Focused on building scalable backend architectures and optimizing server-side performance for enterprise-level applications.",
-      deliverables: []
-    },
-    {
-      year: "2025",
-      status: "Internship",
-      type: "Trainee",
-      company: "Bridgeon",
-      role: ".NET & React Developer Trainee",
-      description: "Operating within an Agile development team, I architect scalable backend solutions using the .NET ecosystem. Managed CI/CD pipelines and reacted full-stack features.",
+      location: "Pattambi, Kerala",
+      company: "Sharaco Technologies Pvt Ltd",
+      role: ".Net Backend Developer",
+      description: "Developing robust backend services, high-throughput RESTful APIs, and SaaS systems using ASP.NET Core, C#, SQL Server, Dapper, and Stored Procedures. Specializing in booking workflows, slot availability algorithms, and enterprise notification architecture.",
       deliverables: [
         {
           id: "01",
-          title: "Smart Serve ERP",
-          desc: "Vehicle Service Management System. Digitized job cards, reducing manual processing by 40%.",
-          stack: ["ASP.NET Core", "Dapper", "React"]
+          title: "Booking & Workflow APIs",
+          desc: "Developed and maintained APIs for booking, rescheduling, cancellation, slot availability, and reporting workflows.",
+          stack: ["ASP.NET Core", "C#", "SQL Server", "Dapper", "Stored Procedures"]
         },
         {
           id: "02",
-          title: "Smart Desk System",
-          desc: "SaaS-ready office system with multi-tenant architecture and strict RBAC.",
-          stack: ["EF Core", "SQL Server", "Redux"]
+          title: "Centralized Notification Service",
+          desc: "Built a centralized multi-channel notification service supporting WhatsApp and Email, with scheduling, retry handling, status tracking, and configurable templates.",
+          stack: ["WhatsApp API", "SMTP Email", "Queue Processing", "Status Tracking"]
         },
         {
           id: "03",
-          title: "ShoeCart E-Commerce",
-          desc: "High-performance shopping platform with real-time cart updates and JWT auth.",
-          stack: ["Web API", "Authentication", "React"]
+          title: "SaaS Platform APIs & Integrations",
+          desc: "Worked on SaaS platform APIs and notification services, integrating backend systems with frontend applications and external platforms while delivering production features.",
+          stack: ["RESTful APIs", "SaaS Architecture", "Production Support"]
+        }
+      ]
+    },
+    {
+      year: "2025",
+      status: "Apr 2025 – Jan 2026",
+      type: "Full Stack",
+      location: "Kozhikode, Kerala",
+      company: "Bridgeon Solutions LLP",
+      role: "Full Stack .NET Developer",
+      description: "Built full-stack applications connecting ASP.NET Core APIs with React.js frontends, implementing secure authentication and state management in an Agile team.",
+      deliverables: [
+        {
+          id: "01",
+          title: "Full Stack API & UI Integration",
+          desc: "Built ASP.NET Core APIs and connected them with React.js frontends for login, product listing, and cart operations using ASP.NET Core and EF Core.",
+          stack: ["ASP.NET Core", "React.js", "EF Core", "Redux"]
+        },
+        {
+          id: "02",
+          title: "JWT Authentication & RBAC",
+          desc: "Implemented JWT authentication and role-based access control as part of backend security architecture.",
+          stack: ["JWT", "Role-Based Access", "Backend Security"]
+        },
+        {
+          id: "03",
+          title: "API Testing & Agile Delivery",
+          desc: "Used Swagger and Postman for API testing and interactive documentation, collaborating in Agile-style sprints based on feedback.",
+          stack: ["Swagger", "Postman", "Agile Sprints"]
         }
       ]
     }
@@ -96,7 +117,7 @@ export default function Experience() {
       {/* --- SECTION HEADER --- */}
       <div className="flex flex-col md:flex-row justify-between items-end mb-20">
         <h2 className="text-sm font-mono text-[var(--accent)] uppercase tracking-widest mb-4 md:mb-0">
-          Professional Backend Development Experience (C# / .NET)
+          Professional Experience (.NET Backend &amp; Full Stack)
         </h2>
         <div className="hidden md:flex items-center gap-4 text-xs font-mono uppercase tracking-widest opacity-60">
           <span>Career Timeline</span>
@@ -126,6 +147,11 @@ export default function Experience() {
                 <div className="mt-4 inline-block px-3 py-1 border border-[var(--accent)] rounded-full text-[10px] font-bold uppercase text-[var(--accent)]">
                   {exp.type}
                 </div>
+                {exp.location && (
+                  <span className="font-mono text-[10px] opacity-40 uppercase tracking-wider block mt-2">
+                    {exp.location}
+                  </span>
+                )}
               </div>
 
               {/* --- RIGHT COL: DETAILS --- */}

@@ -14,22 +14,21 @@ export default function Projects() {
 
   useGSAP(
     () => {
-      let mm = gsap.matchMedia();
+      const mm = gsap.matchMedia();
 
-      // Desktop: Horizontal Scroll
-      mm.add("(min-width: 1024px)", () => {
-        const scrollWidth = scrollContainer.current.scrollWidth;
-        const windowWidth = window.innerWidth;
+      mm.add("all", () => {
+        const getScrollDistance = () =>
+          Math.max(scrollContainer.current.scrollWidth - window.innerWidth, 0);
 
         gsap.to(scrollContainer.current, {
-          x: () => -(scrollWidth - windowWidth),
+          x: () => -getScrollDistance(),
           ease: "none",
-          force3D: true, // <--- Forces GPU Acceleration (Fixes lag)
+          force3D: true,
           scrollTrigger: {
             trigger: container.current,
             start: "top top",
-            end: () => `+=${scrollWidth}`,
-            scrub: 1, // Reduced slightly for tighter response
+            end: () => `+=${getScrollDistance()}`,
+            scrub: 1,
             pin: true,
             invalidateOnRefresh: true,
             anticipatePin: 1,
@@ -43,38 +42,42 @@ export default function Projects() {
   const projects = [
     {
       id: "01",
-      title: "Smart Serve",
-      category: "Vehicle ERP System",
+      title: "Flowbee Booking",
+      category: "Appointment Scheduling Platform",
+      link: "https://booking.flowbee.io",
       description:
-        "This project is a comprehensive multi-tenant ERP backend designed for high-volume vehicle service centers, built using ASP.NET Core Web API and SQL Server. I implemented a Clean Architecture approach with the Repository Pattern to strictly separate domain logic from infrastructure concerns, ensuring maintainability and testability. To address performance bottlenecks in job card processing, I optimized complex SQL queries using indexing and execution plan analysis, reducing average response times from 900ms to under 120ms. Security was enforced using JWT authentication with granular role-based access control (RBAC) to manage technician and admin permissions effectively.",
-      stack: ["ASP.NET Core", "React", "Dapper", "SQL"],
+        "Enterprise appointment scheduling platform engineered with ASP.NET Core, C#, Dapper, and Stored Procedures. Features multi-country, timezone-aware booking and slot availability handling local working hours, staff schedules, holidays, and cool-off periods. Designed round-robin staff assignment and conflict detection with transaction-safe database operations to prevent double bookings. Developed automated WhatsApp and Email notifications for confirmations, reminders, and cancellations, with comprehensive audit logging and reporting APIs.",
+      stack: ["ASP.NET Core", "C#", "Dapper", "SQL Server", "WhatsApp API", "React.js"],
       theme: "light",
     },
     {
       id: "02",
-      title: "Smart Desk",
-      category: "Office Management",
+      title: "Al Azima",
+      category: "Meat E-Commerce Platform",
+      link: null,
       description:
-        "Smart Desk is a scalable SaaS-ready office management system engineered to support multiple tenant environments with strict data isolation. Built on ASP.NET Core and Entity Framework Core, the backend leverages a multi-tenant database strategy to ensure data security and performance. I integrated a robust Role-Based Access Control (RBAC) system to manage hierarchical permissions across organizations. The system features a real-time notification engine using SignalR and optimized LINQ queries to handle complex reporting data efficiently, ensuring a responsive experience for administrative dashboards.",
-      stack: ["EF Core", "Redux", "Azure", "Clean Arch"],
+        "High-performance e-commerce backend platform built with ASP.NET Core, EF Core, and SQL Server. Developed RESTful APIs for customer authentication, profiles, dynamic product catalog, cart, coupons, checkout, and order lifecycle management. Implemented JWT/OTP authentication, refresh tokens, role-based authorization, and standardized API responses. Built custom product configurator with dynamic pricing for weight, cut type, marination, and packaging options, plus admin APIs for inventory, orders, and analytics.",
+      stack: ["ASP.NET Core", "C#", "EF Core", "SQL Server", "JWT", "FluentValidation"],
       theme: "dark",
     },
     {
       id: "03",
-      title: "ShoeCart",
-      category: "E-Commerce Platform",
+      title: "KOOTAAN CSM",
+      category: "CSM SaaS Platform",
+      link: null,
       description:
-        "A high-performance e-commerce backend API architected to handle concurrent user traffic and real-time inventory updates. Built with ASP.NET Core Web API and SQL Server, the system features dynamic product filtering and search capabilities optimized for speed. I implemented secure JWT authentication for user sessions and integrated Stripe for secure payment processing. The application uses caching strategies (Redis) to minimize database load for frequently accessed product data, ensuring sub-100ms API response times during peak traffic periods.",
-      stack: ["Web API", "React", "Auth", "SQL"],
+        "Scalable Customer Service Management SaaS platform built on ASP.NET Core and SQL Server. Developed and maintained RESTful APIs driving business logic and high-throughput data access via ADO.NET. Integrated notification services for application and business events. Designed and optimized complex SQL queries and stored procedures for critical application workflows, while troubleshooting and resolving production performance issues.",
+      stack: ["ASP.NET Core", "C#", "ADO.NET", "SQL Server", "Notification Services"],
       theme: "light",
     },
     {
       id: "04",
-      title: "MultiAgent AI",
-      category: "Conversational AI Platform",
+      title: "Centralized Notifications",
+      category: "Multi-Channel Messaging Infrastructure",
+      link: null,
       description:
-        "An advanced conversational AI platform designed to deploy and orchestrate multiple autonomous agents. The backend integrates with Groq LLM API for high-speed inference and uses Firebase for real-time state management. I implemented a vector-based knowledge retrieval system (RAG) to allow agents to access document-specific context. The architecture supports serverless scaling on Vercel, enabling the system to handle fluctuating concurrent chat sessions without infrastructure management overhead. Security is managed via secure API key handling and rate limiting.",
-      stack: ["React", "Firebase", "Groq LLM", "Vercel"],
+        "Architected a reusable, high-throughput centralized notification service across multiple enterprise applications. Implemented queue-based asynchronous delivery with scheduling, retry handling, and status tracking. Built dynamic config-driven templates supporting company, branch, and event-level notification rules. Developed bulk notification processing using SQL Table-Valued Parameters (TVPs) and implemented an orchestration layer for lookup, encryption, and queue dispatch.",
+      stack: ["ASP.NET Core", "C#", "SQL Server", "Queue Delivery", "WhatsApp API", "SMTP Email"],
       theme: "dark",
     },
   ];
@@ -83,7 +86,7 @@ export default function Projects() {
     <section
       ref={container}
       id="projects"
-      className="relative bg-[var(--background)] lg:h-screen lg:overflow-hidden flex flex-col lg:flex-row lg:items-center border-t border-[var(--border-color)]"
+      className="relative h-[100svh] overflow-hidden flex items-center bg-[var(--background)] border-t border-[var(--border-color)]"
     >
       {/* Background Grid (Optimized with simpler mask for performance) */}
       <div
@@ -100,14 +103,14 @@ export default function Projects() {
       */}
       <div
         ref={scrollContainer}
-        className="relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-24 px-6 lg:px-24 items-center h-full py-20 lg:py-0 will-change-transform"
+        className="relative z-10 flex h-full flex-row items-center gap-6 px-6 md:gap-12 md:px-12 lg:gap-24 lg:px-24 will-change-transform"
       >
         {/* --- 1. INTRO CARD --- */}
-        <div className="w-full lg:w-[35vw] shrink-0 flex flex-col justify-center z-10">
+        <div className="w-[86vw] shrink-0 flex flex-col justify-center z-10 md:w-[55vw] lg:w-[35vw]">
           <div className="mb-6 flex items-center gap-4">
             <span className="w-12 h-[2px] bg-[var(--accent)]"></span>
             <span className="font-mono text-sm uppercase tracking-widest text-[var(--accent)]">
-              Backend Projects – REST APIs, SQL Server & System Architecture
+              Featured Systems – Production APIs, SaaS &amp; Architecture
             </span>
           </div>
           <h2 className="text-6xl md:text-9xl font-black text-[var(--foreground)] leading-[0.8] tracking-tighter uppercase">
@@ -118,8 +121,7 @@ export default function Projects() {
             </span>
           </h2>
           <p className="mt-8 text-xl opacity-60 max-w-md font-light leading-relaxed">
-            Engineering scalable backends & interactive frontends using Clean
-            Architecture.
+            Engineering scalable backends, high-throughput APIs, and enterprise SaaS solutions.
           </p>
         </div>
 
@@ -127,12 +129,12 @@ export default function Projects() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="w-[90vw] lg:w-[45vw] h-[65vh] lg:h-[75vh] relative group shrink-0"
+            className="project-card-mobile relative h-[72svh] w-[86vw] shrink-0 group md:h-[70vh] md:w-[55vw] lg:h-[75vh] lg:w-[45vw]"
           >
             {/* CARD CONTAINER */}
             <div
               className={`
-                    absolute inset-0 border flex flex-col overflow-hidden shadow-2xl p-8 md:p-12 transition-all duration-500
+                    absolute inset-0 border flex flex-col overflow-hidden shadow-2xl p-8 md:p-12 transition-all duration-500 rounded-2xl lg:rounded-none
                     ${project.theme === "dark"
                   ? "bg-[var(--foreground)] text-[var(--background)] border-[var(--foreground)]"
                   : "bg-[var(--card-bg)] border-[var(--border-color)] hover:border-[var(--accent)]"
@@ -163,19 +165,40 @@ export default function Projects() {
                     {project.title}
                   </h3>
                 </div>
-                <Magnetic>
-                  <div
-                    className={`
-                                p-4 rounded-full border transition-all cursor-pointer shrink-0
-                                ${project.theme === "dark"
-                        ? "border-[var(--background)] hover:bg-[var(--accent)] hover:border-[var(--accent)] hover:text-black"
-                        : "border-[var(--foreground)] group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] group-hover:text-black"
-                      }
-                          `}
-                  >
-                    <FiArrowUpRight className="text-2xl md:text-3xl" />
-                  </div>
-                </Magnetic>
+                {project.link ? (
+                  <Magnetic>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`
+                                  inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border transition-all cursor-pointer
+                                  ${project.theme === "dark"
+                          ? "border-[var(--background)] hover:bg-[var(--accent)] hover:border-[var(--accent)] hover:text-black"
+                          : "border-[var(--foreground)] group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] group-hover:text-black"
+                        }
+                            `}
+                      aria-label={`Open ${project.title} live link`}
+                    >
+                      <FiArrowUpRight className="text-2xl md:text-3xl" />
+                    </a>
+                  </Magnetic>
+                ) : (
+                  <Magnetic>
+                    <div
+                      className={`
+                                  flex h-14 w-14 shrink-0 items-center justify-center rounded-full border transition-all opacity-40
+                                  ${project.theme === "dark"
+                          ? "border-[var(--background)]"
+                          : "border-[var(--foreground)]"
+                        }
+                            `}
+                      title="Enterprise production project"
+                    >
+                      <FiArrowUpRight className="text-2xl md:text-3xl" />
+                    </div>
+                  </Magnetic>
+                )}
               </div>
 
               {/* Content Area - Fixed & Truncated */}
@@ -208,14 +231,14 @@ export default function Projects() {
         ))}
 
         {/* --- 3. CTA CARD --- */}
-        <div className="w-full lg:w-[40vw] flex flex-col items-center justify-center shrink-0 z-10 gap-8 py-20 lg:py-0">
+        <div className="w-[86vw] flex flex-col items-center justify-center shrink-0 z-10 gap-8 md:w-[55vw] lg:w-[40vw]">
           <div className="w-full h-[1px] bg-[var(--foreground)] opacity-20"></div>
           <p className="font-mono text-sm uppercase tracking-[0.2em] text-[var(--foreground)]">
             Have a concept?
           </p>
           <a
             href="mailto:rinshadcontacts@gmail.com"
-            className="text-7xl md:text-9xl font-black uppercase text-[var(--foreground)] hover:text-transparent hover:text-stroke-accent transition-all duration-300 cursor-pointer"
+            className="text-7xl md:text-9xl font-black uppercase text-[var(--foreground)] hover:text-black transition-colors duration-300 cursor-pointer"
           >
             Hire Me
           </a>

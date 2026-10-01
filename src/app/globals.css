@@ -1,12 +1,45 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Circular Std";
+  src: url("/circular-std-extracted/CircularStd-Book.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 449;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Circular Std";
+  src: url("/circular-std-extracted/CircularStd-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 450 599;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Circular Std";
+  src: url("/circular-std-extracted/CircularStd-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600 799;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Circular Std";
+  src: url("/circular-std-extracted/CircularStd-Black.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 800 900;
+  font-display: swap;
+}
+
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --color-card: var(--card-bg);
   --color-border: var(--border-color);
-  --font-sans: var(--font-outfit), system-ui, -apple-system, sans-serif;
+  --font-sans: "Circular Std", system-ui, -apple-system, sans-serif;
+  --font-mono: "Circular Std", system-ui, -apple-system, sans-serif;
 }
 
 :root {
@@ -117,6 +150,32 @@ body::before {
   display: flex;
   white-space: nowrap;
   animation: marquee 8s linear infinite;
+}
+
+@keyframes preloader-flash {
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.75;
+  }
+
+  42% {
+    opacity: 0.08;
+  }
+
+  60% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.preloader-flash {
+  animation: preloader-flash 420ms ease-out both;
 }
 
 @media (min-width: 768px) {

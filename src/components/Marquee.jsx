@@ -6,21 +6,18 @@ import { useGSAP } from "@gsap/react";
 const skills = [
   { name: "C#", img: "https://skillicons.dev/icons?i=c#" },
   { name: ".NET Core", img: "https://skillicons.dev/icons?i=dotnet" },
-  { name: "Azure", img: "https://skillicons.dev/icons?i=azure" },
   { name: "SQL Server", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" },
-  { name: "React", img: "https://techstack-generator.vercel.app/react-icon.svg" },
-  { name: "JavaScript", img: "https://techstack-generator.vercel.app/js-icon.svg" },
-  { name: "Redux", img: "https://techstack-generator.vercel.app/redux-icon.svg" },
-  { name: "AWS", img: "https://techstack-generator.vercel.app/aws-icon.svg" },
+  { name: "PostgreSQL", img: "https://skillicons.dev/icons?i=postgres" },
+  { name: "React", img: "https://skillicons.dev/icons?i=react" },
+  { name: "Next.js", img: "https://skillicons.dev/icons?i=nextjs" },
+  { name: "Redux", img: "https://skillicons.dev/icons?i=redux" },
+  { name: "JavaScript", img: "https://skillicons.dev/icons?i=js" },
+  { name: "Tailwind", img: "https://skillicons.dev/icons?i=tailwind" },
   { name: "Docker", img: "https://skillicons.dev/icons?i=docker" },
   { name: "Git", img: "https://skillicons.dev/icons?i=git" },
+  { name: "GitHub", img: "https://skillicons.dev/icons?i=github" },
   { name: "Postman", img: "https://skillicons.dev/icons?i=postman" },
-  { name: "Tailwind", img: "https://skillicons.dev/icons?i=tailwind" },
-  { name: "HTML5", img: "https://skillicons.dev/icons?i=html" },
-  { name: "CSS3", img: "https://skillicons.dev/icons?i=css" },
-  { name: "Linux", img: "https://skillicons.dev/icons?i=linux" },
-  { name: "Vercel", img: "https://skillicons.dev/icons?i=vercel" },
-  { name: "Figma", img: "https://skillicons.dev/icons?i=figma" },
+  { name: "VS Code", img: "https://skillicons.dev/icons?i=vscode" },
 ];
 
 export default function Marquee() {
@@ -29,21 +26,11 @@ export default function Marquee() {
   useGSAP(() => {
     const items = itemsRef.current;
 
-    // PERFORMANCE OPTIMIZATION: Setup quickSetters
-    const setters = items.map((item) => {
-      if (!item) return null;
-      return {
-        scale: gsap.quickSetter(item, "scale"),
-        filter: gsap.quickSetter(item, "filter"),
-        opacity: gsap.quickSetter(item, "opacity"),
-      };
-    });
-
     const updateSpotlight = () => {
       const centerX = window.innerWidth / 2;
 
-      items.forEach((item, i) => {
-        if (!item || !setters[i]) return;
+      items.forEach((item) => {
+        if (!item) return;
         const rect = item.getBoundingClientRect();
         const itemX = rect.left + rect.width / 2;
 
@@ -53,17 +40,18 @@ export default function Marquee() {
         const normalizedDist = Math.min(dist / maxDist, 1);
 
         // Spotlight Strength (1 at center, 0 at edges)
-        // Using a smoother power for liquid feel
         const spotlight = Math.pow(1 - normalizedDist, 3);
 
         // Dynamic properties
-        const scale = 1 + spotlight * 0.12; // Extremely subtle, premium zoom
+        const scale = 1 + spotlight * 0.12;
         const grayscale = (1 - spotlight) * 100;
-        const opacity = 0.25 + spotlight * 0.75; // Fade to 25% at edges
+        const opacity = 0.25 + spotlight * 0.75;
 
-        setters[i].scale(scale);
-        setters[i].filter(`grayscale(${grayscale}%)`);
-        setters[i].opacity(opacity);
+        gsap.set(item, {
+          scale: scale,
+          filter: `grayscale(${grayscale}%)`,
+          opacity: opacity,
+        });
       });
     };
 

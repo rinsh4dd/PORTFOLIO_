@@ -61,20 +61,24 @@ export default function About() {
 
   const specs = [
     {
-      label: "Core Stack",
-      value: "C#, ASP.NET Core, EF Core, Dapper",
+      label: "Backend",
+      value: "ASP.NET Core, C#, EF Core, Dapper, ADO.NET, LINQ",
     },
     {
       label: "Frontend",
-      value: "React.js, Next.js, JavaScript, Tailwind CSS",
+      value: "React.js, Next.js, Redux, JavaScript, Tailwind CSS",
     },
     {
-      label: "Cloud & DB",
-      value: "Microsoft Azure, SQL Server, Docker, Redis",
+      label: "Databases",
+      value: "SQL Server, PostgreSQL, Firebase Firestore",
     },
     {
-      label: "Development",
-      value: "Git, GitHub, Postman, Linux, CI/CD",
+      label: "Tools & DevOps",
+      value: "Git, GitHub, Docker, SSMS, VS Code, Swagger, Scalar, Postman",
+    },
+    {
+      label: "AI Development",
+      value: "Antigravity, Codex, Cursor, Claude (AI-assisted coding & debugging)",
     },
   ];
   return (
@@ -88,7 +92,7 @@ export default function About() {
         <div className="md:col-span-3">
           <h2 className="about-bio text-xs font-mono text-[var(--accent)] uppercase tracking-[0.2em] sticky top-32 flex items-center gap-3">
             <span className="w-2 h-2 bg-[var(--accent)] rounded-full animate-pulse"></span>
-            About Mohammed Rinshad – ASP.NET Core Backend Developer
+            About Mohammed Rinshad – Full Stack .NET Developer
           </h2>
         </div>
 
@@ -105,24 +109,20 @@ export default function About() {
             </h3>
             <div className="about-bio grid grid-cols-1 md:grid-cols-2 gap-8 text-lg md:text-xl font-light opacity-70 leading-relaxed">
               <p>
-                Specializing in the Microsoft ecosystem, I build robust RESTful
-                APIs using{" "}
+                Specializing in C#, ASP.NET Core, and React.js, I build high-performance
+                SaaS, e-commerce, appointment booking, and centralized notification systems.
+                Experienced in developing robust RESTful APIs and optimized database solutions with{" "}
                 <strong className="text-[var(--foreground)] font-normal">
-                  ASP.NET Core
-                </strong>{" "}
-                and high-performance databases with{" "}
-                <strong className="text-[var(--foreground)] font-normal">
-                  SQL Server.
+                  SQL Server, Dapper, &amp; EF Core.
                 </strong>
               </p>
               <p>
-                On the client side, I craft responsive, type-safe interfaces
+                On the client side, I engineer responsive, type-safe frontend applications
                 using{" "}
                 <strong className="text-[var(--foreground)] font-normal">
-                  React.js
-                </strong>{" "}
-                and modern CSS frameworks, ensuring a seamless user experience
-                from database to pixel.
+                  React.js, Next.js, and Tailwind CSS
+                </strong>
+                , seamlessly integrating backend services with modern frontends, external APIs, and cloud services.
               </p>
             </div>
           </div>
@@ -130,7 +130,7 @@ export default function About() {
           {/* 2. TECH SPECS LIST */}
           <div className="w-full" ref={specsRef} id="techstack">
             <h4 className="about-bio font-mono text-xs uppercase tracking-widest opacity-40 mb-8">
-              Backend Technology Stack – .NET, EF Core, SQL Server, Redis
+              Technical Stack &amp; Specialization – .NET, C#, SQL Server, React.js
             </h4>
 
             <div className="flex flex-col">

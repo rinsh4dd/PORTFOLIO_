@@ -2,15 +2,7 @@ import "@/app/globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ClientSideComponents from "@/components/ClientSideComponents";
-import Preloader from "@/components/PreLoader";
-import { Outfit } from "next/font/google";
 import Script from "next/script";
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-});
 
 
 // 1. The SEO Configuration
@@ -18,7 +10,7 @@ const outfit = Outfit({
 export const metadata = {
   metadataBase: new URL('https://rinshad.site'),
   title: {
-    default: "Mohammed Rinshad - .NET Backend Developer | ASP.NET Core & SQL Server",
+    default: "Mohammed Rinshad - Full Stack .NET Developer | ASP.NET Core & React.js",
     template: "%s | Mohammed Rinshad"
   },
   alternates: {
@@ -29,17 +21,18 @@ export const metadata = {
   },
 
   description:
-    "Mohammed Rinshad is a .NET Backend Developer building scalable ASP.NET Core APIs, SQL Server systems and high-performance backend architecture. Portfolio, projects and experience.",
+    "Mohammed Rinshad is a Full Stack .NET Developer specializing in C#, ASP.NET Core, React.js, and SQL Server. Experienced in SaaS platforms, appointment booking, e-commerce, and notification infrastructure.",
 
   keywords: [
     "Mohammed Rinshad",
-    "Rinshad .NET Developer",
-    ".NET Backend Developer Kerala",
+    "Full Stack .NET Developer",
     "ASP.NET Core Developer India",
-    "C# Backend Developer",
+    "C# Developer Kerala",
+    "React.js Developer",
     "SQL Server Developer",
-    "Entity Framework Core Developer",
-    "REST API Developer",
+    "Dapper .NET Developer",
+    "Entity Framework Core",
+    "REST API Architecture",
     "Backend Developer Portfolio"
   ],
 
@@ -49,8 +42,8 @@ export const metadata = {
     type: "website",
     locale: "en_US",
     url: "https://rinshad.site",
-    title: "Mohammed Rinshad - .NET Backend Developer",
-    description: "ASP.NET Core backend developer building scalable APIs and SQL Server architectures.",
+    title: "Mohammed Rinshad - Full Stack .NET Developer",
+    description: "Full Stack .NET Developer building scalable ASP.NET Core APIs, modern React.js frontends, and robust SQL Server systems.",
     siteName: "Mohammed Rinshad Portfolio",
     images: [
       {
@@ -87,25 +80,29 @@ export default function RootLayout({ children }) {
     "alternateName": "Rinsh4dd",
     "url": "https://rinshad.site",
     "image": "https://rinshad.site/Rinshad.jpeg",
-    "jobTitle": ".NET Backend Developer",
-    "description": "ASP.NET Core backend developer specializing in scalable REST APIs and SQL Server systems.",
+    "jobTitle": "Full Stack .NET Developer",
+    "description": "Full Stack .NET Developer specializing in C#, ASP.NET Core, React.js, and SQL Server building SaaS, booking, and e-commerce platforms.",
     "worksFor": {
       "@type": "Organization",
-      "name": "Sharaco Technologies"
+      "name": "Sharaco Technologies Pvt Ltd"
     },
     "knowsAbout": [
       "ASP.NET Core",
       "C#",
       ".NET",
+      "React.js",
+      "Next.js",
       "SQL Server",
-      "REST API",
+      "Dapper",
       "Entity Framework Core",
+      "REST API",
+      "Tailwind CSS",
       "Clean Architecture",
       "System Design"
     ],
     "sameAs": [
       "https://github.com/rinsh4dd",
-      "https://linkedin.com/in/rinshad",
+      "https://linkedin.com/in/rinsh4dd",
       "https://instagram.com/rinsh4dd",
       "https://buymeacoffee.com/rinsh4dd"
     ]
@@ -121,7 +118,6 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <Preloader />
           <ClientSideComponents />
           <SmoothScroll>
             {children}
